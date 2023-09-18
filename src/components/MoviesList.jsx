@@ -11,6 +11,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { Box } from "@mui/material"
 import { fetcher } from "../../util/API"
+import { useRouter } from "next/router"
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -56,18 +57,21 @@ const StyledMenu = styled((props) => (
 }))
 
 export function MoviesList() {
+  const router = useRouter()
+  const { list } = router.query
   const [movies, setMovies] = useState("")
-  const [selectedMovieList, setSelectedMovieList] = useState("top_rated")
-  const fetchMovies = async ({ moviestype }) => {
-    const apiRoute = `/movie/${moviestype}?language=en-US`
-    const data = await fetcher(apiRoute)
-    console.log(data.results)
-    setMovies(data.results)
+  const [selectedMovieList, setSelectedMovieList] = useState(
+    list || "top_rated",
+  )
+
+  const handleListSelect = (selectedMovieList) => {
+    router.push(`/movies?list=${selectedMovieList}`)
+    setAnchorEl(null)
   }
 
   useEffect(() => {
-    fetchMovies({ moviestype: selectedMovieList })
-  }, [selectedMovieList])
+    setSelectedMovieList(list || "top_rated")
+  }, [list])
 
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -108,16 +112,14 @@ export function MoviesList() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => setSelectedMovieList("popular")}>
-          Popular
-        </MenuItem>
-        <MenuItem onClick={() => setSelectedMovieList("top_rated")}>
+        <MenuItem onClick={() => handleListSelect("popular")}>Popular</MenuItem>
+        <MenuItem onClick={() => handleListSelect("top_rated")}>
           Top Rated
         </MenuItem>
-        <MenuItem onClick={() => setSelectedMovieList("now_playing")}>
+        <MenuItem onClick={() => handleListSelect("now_playing")}>
           Now Playing
         </MenuItem>
-        <MenuItem onClick={() => setSelectedMovieList("upcoming")}>
+        <MenuItem onClick={() => handleListSelect("upcoming")}>
           Upcoming
         </MenuItem>
       </StyledMenu>

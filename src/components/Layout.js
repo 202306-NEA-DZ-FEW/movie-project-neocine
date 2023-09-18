@@ -7,15 +7,6 @@ const Layout = ({ children }) => {
   const [searchResults, setSearchResults] = useState([])
   const [selectedGenreId, setSelectedGenreId] = useState(null)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetcher("genre/movie/list?language=en")
-      setGenresMovie(response)
-    }
-
-    fetchData()
-  }, [])
-
   const onSearch = async (query) => {
     try {
       const response = await fetcher(
@@ -23,7 +14,6 @@ const Layout = ({ children }) => {
       )
 
       if (response.results && Array.isArray(response.results)) {
-        // Assuming the API response contains an array of results
         return response.results
       }
     } catch (error) {
@@ -32,18 +22,9 @@ const Layout = ({ children }) => {
     }
   }
 
-  const handleGenreSelect = (genreId) => {
-    setSelectedGenreId(genreId)
-    console.log("genre id in the layout", genreId)
-  }
-
   return (
     <div>
-      <Navbar
-        movieGenresList={genresMovie}
-        onSearch={onSearch}
-        onGenreSelect={handleGenreSelect}
-      />
+      <Navbar movieGenresList={genresMovie} onSearch={onSearch} />
       {children(genresMovie, searchResults)}
     </div>
   )

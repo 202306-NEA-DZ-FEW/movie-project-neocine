@@ -13,6 +13,10 @@ import { MoviesList } from "./MoviesList"
 import Drawer from "@mui/material/Drawer"
 import GenresList from "./GenresList"
 import Link from "next/link"
+import { useState, useEffect } from "react"
+import { fetcher } from "../../util/API"
+import { useRouter } from "next/router"
+
 // search component
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -44,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
+
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -76,13 +80,23 @@ export default function Navbar({
   const [searchResults, setSearchResults] = React.useState([])
   const [isDrawerOpen, setDrawerOpen] = React.useState(false)
   const [selectedGenre, setSelectedGenre] = React.useState(null)
+  const [selectedGenreId, setSelectedGenreId] = useState(null)
+  const [genresMovie, setGenresMovie] = useState(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetcher("genre/movie/list?language=en")
+      setGenresMovie(response)
+    }
+
+    fetchData()
+  }, [])
 
   const handleGenreSelect = (genreId) => {
     setSelectedGenre(genreId)
+    router.push(`/movies?genre=${genreId}`)
     console.log("genre in navbar is ", genreId)
-
-    // to the layout component
-    onGenreSelect(genreId)
   }
 
   const open = Boolean(anchorEl)
@@ -134,7 +148,7 @@ export default function Navbar({
             <HomeBtn />
 
             <GenresList
-              Genres={movieGenresList}
+              Genres={genresMovie}
               tag={"Genres"}
               onGenreSelect={handleGenreSelect}
             />

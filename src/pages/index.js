@@ -1,39 +1,38 @@
 import Head from "next/head"
 import Image from "next/image"
-import styles from "@/styles/Home.module.css"
-import Cards from "../components/Cards"
+import Cards from "@/components/Cards"
 import { fetcher } from "../../util/API"
-import Moviescredits from "../components/Moviescredits"
-import Tvcredits from "../components/Tvcredits"
+import Slider from "@/components/Slider"
+import CardsSlider from "@/components/CardsSlider"
+import styles from "@/styles/Home.module.css"
 
-import Movielists from "@/components/Movielists"
-
-import Searchbar from "../components/Searchbar"
-import Navbar from "@/components/Navbar"
-import GernresList from "@/components/GenresList"
-import Actor from "@/pages/ActorPage/[ActorId]"
 export default function Home({ latestMovie }) {
+  const latestThreeMovies = latestMovie.results.slice(0, 3)
+  const latestFiveMovies = latestMovie.results.slice(0, 60)
+
   return (
     <>
-      {/* <GernresList movieGernresList={movieGernresList}/> */}
+      <div className={styles.test}>
+        <div className={styles.titles}>
+          <Slider movies={latestThreeMovies} />
+        </div>
 
-      <Searchbar />
-
-      {latestMovie.results.map((movie, index) => {
-        return (
-          <div key={index}>
-            <Cards {...movie} />
-          </div>
-        )
-      })}
-      <Tvcredits />
-      <Actor />
+        <h1 className={styles.titles}>Latest Movies :</h1>
+        <div className={styles.smallSlider}>
+          <CardsSlider movies={latestFiveMovies} />
+        </div>
+        <h1 className={styles.titles}>Popular Movies :</h1>
+        <div className={styles.smallSlider}>
+          <CardsSlider movies={latestFiveMovies} />
+        </div>
+      </div>
     </>
   )
 }
 
 export async function getStaticProps() {
   const data = await fetcher("trending/movie/day?language=en-US")
+
   return {
     props: {
       latestMovie: data,
