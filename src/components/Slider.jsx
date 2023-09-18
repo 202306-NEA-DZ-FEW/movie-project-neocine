@@ -106,7 +106,7 @@ export default function Slider({ movies }) {
             btext={
               <div>
                 <Image
-                  alt="icon"
+                  alt="watch icon"
                   src="/play.svg"
                   style={{ marginTop: "10px" }}
                 />{" "}

@@ -40,7 +40,7 @@ function SmallCards({
           <>
             <Image
               style={{ width: 200, height: 118 }}
-              alt={title}
+              alt="image of the movie "
               src={imageSrc}
             />{" "}
             <Link
