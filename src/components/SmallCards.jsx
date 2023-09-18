@@ -14,6 +14,7 @@ function SmallCards({
   backdrop_path,
   loading,
   id,
+  name,
 }) {
   const imageSrc = `https://image.tmdb.org/t/p/original${backdrop_path}`
   const linkStyle = {
@@ -51,7 +52,7 @@ function SmallCards({
             >
               <Box sx={{ pr: 1 }}>
                 <Typography gutterBottom variant="body2">
-                  {title}
+                  {title || name}
                 </Typography>
                 <Typography display="block" variant="caption" color="white">
                   <Rating

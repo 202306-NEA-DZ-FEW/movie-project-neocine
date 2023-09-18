@@ -78,7 +78,7 @@ const Movies = ({ latestMovie, selectedGenre }) => {
 
   return (
     <div className={styles.wrapper}>
-      <SearchBar onSearch={setSearchTerm} />
+      <SearchBar onSearch={setSearchTerm} placeh={"Search Movies..."} />
 
       <Grid container spacing={2}>
         {filteredMovies.map((movie) => {

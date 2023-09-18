@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetcher } from "../../util/API"
 import Navbar from "@/components/Navbar"
+import Footer from "./Footer"
 
 const Layout = ({ children }) => {
   const [genresMovie, setGenresMovie] = useState(null)
@@ -26,6 +27,7 @@ const Layout = ({ children }) => {
     <div>
       <Navbar movieGenresList={genresMovie} onSearch={onSearch} />
       {children(genresMovie, searchResults)}
+      <Footer />
     </div>
   )
 }

@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import SearchIcon from "@mui/icons-material/Search"
 import styles from "@/styles/movieSearchBar.module.css"
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, placeh = "Search..." }) {
   const [searchTerm, setSearchTerm] = useState("")
 
   const handleChange = (event) => {
@@ -26,7 +26,7 @@ export default function SearchBar({ onSearch }) {
       <TextField
         id="search"
         type="search"
-        placeholder="Search Movies..."
+        placeholder={placeh}
         // label="Search"
         value={searchTerm}
         className={styles.textField}

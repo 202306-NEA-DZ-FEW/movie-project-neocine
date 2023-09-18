@@ -1,11 +1,12 @@
 import { Grid } from "@mui/material"
-import { fetcher } from "../../util/API"
+import { fetcher } from "../../../util/API"
 import Cards from "@/components/Cards"
 import Link from "next/link"
-import styles from "../styles/movies.module.css"
+import styles from "@/styles/movies.module.css"
 import SearchBar from "@/components/Searchbar"
 import { useState, useEffect } from "react"
-const Movies = ({ latestMovie }) => {
+
+const Actors = ({ latestactor }) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
   // search/person?query=1&include_adult=false&langua
@@ -17,17 +18,21 @@ const Movies = ({ latestMovie }) => {
   useEffect(() => {
     handleSearch(searchTerm)
   }, [searchTerm])
-  const moviesToDisplay = searchTerm ? searchResults : latestMovie.results
+  const actorsToDisplay = searchTerm ? searchResults : latestactor.results
   return (
     <div className={styles.wrapper}>
-      <SearchBar onSearch={setSearchTerm} />
+      <SearchBar onSearch={setSearchTerm} placeh={"Search Actors..."} />
 
       <Grid container spacing={2}>
-        {moviesToDisplay.map((movie) => {
+        {actorsToDisplay.map((actor) => {
           return (
-            <Grid key={movie.id} item md={3} className={styles.gridItem}>
-              <Link href={`/${movie.id}`}>
-                <Cards title={movie.name} poster_path={movie.profile_path} />
+            <Grid key={actor.id} item md={3} className={styles.gridItem}>
+              <Link href={`/${actor.id}`}>
+                <Cards
+                  title={actor.name}
+                  poster_path={actor.profile_path}
+                  popularity={actor.popularity}
+                ></Cards>
               </Link>
             </Grid>
           )
@@ -36,13 +41,13 @@ const Movies = ({ latestMovie }) => {
     </div>
   )
 }
-export default Movies
+export default Actors
 
 export async function getStaticProps() {
-  const data = await fetcher("trending/person/day?language=en-US")
+  const data = await fetcher("person/popular?language=en-US&page=1")
   return {
     props: {
-      latestMovie: data,
+      latestactor: data,
     },
   }
 }

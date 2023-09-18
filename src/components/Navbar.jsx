@@ -16,6 +16,8 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { fetcher } from "../../util/API"
 import { useRouter } from "next/router"
+import Cards from "./Cards"
+import styles from "@/styles/navbarSearch.module.css"
 
 // search component
 const Search = styled("div")(({ theme }) => ({
@@ -84,6 +86,12 @@ export default function Navbar({
   const [genresMovie, setGenresMovie] = useState(null)
   const router = useRouter()
 
+  const navigateToMovies = () => {
+    setTimeout(() => {
+      router.push("/movies")
+    }, 5000)
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetcher("genre/movie/list?language=en")
@@ -112,7 +120,6 @@ export default function Navbar({
   const handleSearch = async () => {
     if (searchQuery.trim() === "") {
       setSearchResults([])
-      return
     }
 
     const results = await onSearch(searchQuery)
@@ -136,13 +143,15 @@ export default function Navbar({
       >
         <Toolbar>
           <div>
-            <Image
-              src="/../../logo.svg"
-              layout="responsive"
-              width={100}
-              height={100}
-              alt="NeoCine Logo"
-            />
+            <Link href="/">
+              <Image
+                src="/../../logo.svg"
+                layout="responsive"
+                width={100}
+                height={100}
+                alt="NeoCine Logo"
+              />
+            </Link>
           </div>
           <div style={{ display: "flex", flex: "1", justifyContent: "center" }}>
             <HomeBtn />
@@ -152,9 +161,9 @@ export default function Navbar({
               tag={"Genres"}
               onGenreSelect={handleGenreSelect}
             />
-            <Link href="/movies">
-              <MoviesList />
-            </Link>
+
+            <MoviesList />
+
             <ActorsBtn />
           </div>
           <Search>
@@ -191,11 +200,28 @@ export default function Navbar({
             role="presentation"
             onClick={closeDrawer}
             onKeyDown={closeDrawer}
+            className={styles.drawerContainer}
           >
-            <h2>Search Results:</h2>
-            <ul>
+            <h2 className={styles.searchTitle}>Search Results:</h2>
+            <ul className={styles.movieListContainer}>
               {searchResults.map((result) => (
-                <li key={result.id}>{result.name}</li>
+                <>
+                  <li key={result.id} className={styles.movieItem}>
+                    <Link href={`/${result.id}`} className={styles.movieLink}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w200${result.poster_path}`}
+                        alt={result.title}
+                        className={styles.movieImage}
+                      />
+
+                      <p className={styles.movietitle}>{result.title}</p>
+
+                      <p className={styles.releaseDate}>
+                        {result.release_date}
+                      </p>
+                    </Link>
+                  </li>
+                </>
               ))}
             </ul>
           </div>

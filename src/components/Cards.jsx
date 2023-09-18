@@ -7,7 +7,13 @@ import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import styles from "@/styles/cards.module.css"
 
-export default function Cards({ title, overview, poster_path, release_date }) {
+export default function Cards({
+  title,
+  overview,
+  poster_path,
+  release_date,
+  popularity,
+}) {
   const images = `https://image.tmdb.org/t/p/original${poster_path}`
 
   return (
@@ -30,6 +36,13 @@ export default function Cards({ title, overview, poster_path, release_date }) {
         </Typography>
         <Typography variant="body2" className={styles.overviewStyles}>
           {overview}
+        </Typography>
+        <Typography
+          variant="body2"
+          className={styles.overviewStyles}
+          sx={{ fontSize: "1.5rem" }}
+        >
+          Popularity: {popularity}
         </Typography>
       </CardContent>
     </Card>
