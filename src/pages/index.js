@@ -9,7 +9,7 @@ import Link from "next/link"
 export default function Home({ latestMovie }) {
   const latestThreeMovies = latestMovie.results.slice(0, 3)
   const latestFiveMovies = latestMovie.results.slice(0, 60)
-
+  console.log(latestThreeMovies)
   return (
     <>
       <div className={styles.test}>

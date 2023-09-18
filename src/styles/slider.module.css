@@ -9,3 +9,6 @@
   position: absolute;
   color: red;
 }
+.home_card_link:hover {
+  color: red;
+}

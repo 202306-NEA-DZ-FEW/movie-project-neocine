@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react"
 import Cards from "../../components/Cards"
 import Moviescredits from "../Moviescredits"
+import Image from "next/image"
 
 const ActorPage = () => {
   const [actor, setActor] = useState({
@@ -49,7 +50,7 @@ const ActorPage = () => {
         }}
       >
         {actor.profile_path && (
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}
             alt={actor.name}
             style={{ marginRight: "20px", flex: "0 0 auto", width: "300px" }}

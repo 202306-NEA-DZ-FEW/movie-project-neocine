@@ -48,9 +48,7 @@ const StyledMenu = styled((props) => (
   },
 }))
 
-
 export default function GenresList({ Genres, tag, onGenreSelect }) {
-
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {

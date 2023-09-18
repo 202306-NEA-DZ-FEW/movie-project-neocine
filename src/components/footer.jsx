@@ -3,6 +3,7 @@ import * as React from "react"
 import { GitHub } from "@mui/icons-material"
 
 import { fontSize } from "@mui/system"
+import Image from "next/image"
 
 /*the page content/
 /1-this is the logo section  it contains the logo ,
@@ -13,7 +14,7 @@ import { fontSize } from "@mui/system"
 
 export default function Footer() {
   ;<>
-    <img />
+    <Image alt="github link" />
     <h1>Video</h1>
     <h1>Video</h1>
     <h3>© luxi theme 2020</h3>

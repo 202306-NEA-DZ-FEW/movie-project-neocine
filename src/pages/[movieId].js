@@ -4,7 +4,7 @@ import { fetcher } from "../../util/API"
 import TrailerActorContainer from "@/components/singleMovie/Container"
 
 export default function MoviePage({ movie, credits, trailer, similar }) {
-  console.log("actors", credits)
+  console.log(trailer)
   const video = trailer.results.find((result) => result)
   const relatedMovies = similar.results.map((result) => result)
   return (

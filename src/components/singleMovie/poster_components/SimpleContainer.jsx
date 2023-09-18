@@ -27,7 +27,7 @@ export default function SimpleContainer({ movie, image, productionCompany }) {
             {movie.original_language}{" "}
           </div>
           <div className="grid-item poster">
-            <img src={image} alt="Actor Image" id="movie-image" />
+            <Image src={image} alt="Actor Image" id="movie-image" />
           </div>
           <div className="grid-item">
             <Buttons className="watch" href="#video" btext="watch trailer">
@@ -42,7 +42,7 @@ export default function SimpleContainer({ movie, image, productionCompany }) {
                 <pre>
                   <span>{company.name}</span>{" "}
                 </pre>
-                <img
+                <Image
                   style={{ maxWidth: "20px" }}
                   src={`https://image.tmdb.org/t/p/w500/${company.logo_path}`}
                   alt="logo"

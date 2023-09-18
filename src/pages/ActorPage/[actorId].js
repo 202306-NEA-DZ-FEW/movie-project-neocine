@@ -1,10 +1,11 @@
 // pages/actor/[actorId].js
 import React from "react"
 import { fetcher } from "../../util/API"
+import Image from "next/image"
 export default function ActorPage({ actor, movies }) {
   return (
     <>
-      <img src={actor.profileImage} alt={actor.name} />
+      <Image src={actor.profileImage} alt={actor.name} />
       <br />
       <h2>Movies Participated In:</h2>
       <ul>
