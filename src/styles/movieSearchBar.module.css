@@ -1,0 +1,16 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  color: #f5c518;
+}
+.textField {
+  width: 80%;
+}
+.textField input {
+  color: #f5c518;
+}
+.searchIcon {
+  color: #f5c518;
+  font-size: 2rem;
+}

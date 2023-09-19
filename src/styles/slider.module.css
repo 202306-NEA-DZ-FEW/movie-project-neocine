@@ -1,0 +1,11 @@
+.slidertext {
+  position: absolute;
+  top: -40px;
+  color: red;
+  background-color: transparent;
+}
+
+.CardContent {
+  position: absolute;
+  color: red;
+}

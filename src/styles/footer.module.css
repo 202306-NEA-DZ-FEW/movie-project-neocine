@@ -1,0 +1,62 @@
+.footerContainer {
+  /* height: 250px; */
+  background: url(../../public/footerbg.svg) center/cover no-repeat;
+  /* background-color: blue; */
+  text-transform: capitalize;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 0;
+}
+.teamBox > h1 {
+  color: #f5c518;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.teamBox > h2 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.linkedinBox > h1 {
+  color: #f5c518;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.linkedinBox > a {
+  text-decoration: none;
+  display: block;
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.linkedinBox > a:hover {
+  color: #f5c518;
+}
+.githubBox > h1 {
+  color: #f5c518;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.githubBox > a {
+  text-decoration: none;
+  display: block;
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.githubBox > a:hover {
+  color: #f5c518;
+}
+.githubRepoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.githubIcon {
+  color: white;
+  text-decoration: none;
+}

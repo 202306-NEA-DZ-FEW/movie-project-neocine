@@ -1,0 +1,40 @@
+.drawerContainer {
+  background: black;
+}
+.searchTitle {
+  color: #f5c518;
+  margin-bottom: 1rem;
+}
+
+.movieItem {
+  width: 100%;
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+}
+
+.movieLink {
+  display: block;
+  width: 60%;
+  color: #f5c518;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.movieImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+.movieTitle {
+  max-width: 100%;
+}
+.releaseDate {
+  color: white;
+  margin-top: 0.2rem;
+  font-size: 0.7rem;
+}

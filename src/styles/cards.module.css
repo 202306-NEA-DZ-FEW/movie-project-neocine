@@ -1,0 +1,32 @@
+.container {
+  background: black;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+.imagesStyles {
+  max-width: 100%;
+  height: auto;
+}
+.textStyles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 40%;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: "white";
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.container:hover .textStyles {
+  opacity: 1;
+}
+.titleStyles {
+  /* background-color: #F5C518; */
+  color: #f5c518;
+}
+.overviewStyles {
+  color: white;
+}
